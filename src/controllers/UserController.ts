@@ -8,9 +8,19 @@ class UserController {
         const { name, email } = request.body;
         
         const schema = yup.object().shape({
-            name: yup.string().required(),
-            email: yup.string().email().required()
-        })
+            name: yup.string().required("User name is required."),
+            email: yup.string().email().required("E-mail is required. Please, enter a valid e-mail adress.")
+        });
+
+        /* if(!await schema.isValid(request.body)){
+            return response.status(400).json({error:'Validation failed.'});
+        } */
+
+        try {
+            await schema.validate(request.body, {abortEarly: false });
+        } catch (error) {
+            return response.status(400).json({error:error});
+        }
 
         const usersRepository = getCustomRepository(UsersRepository);
 

@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-    "test": "jest",
-    "posttest": "rm ./src/database/database.test.sqlite"
+    "test": "jest"
   },
   "dependencies": {
     "@types/reflect-metadata": "^0.1.0",
